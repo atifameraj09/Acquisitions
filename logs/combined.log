@@ -29,3 +29,13 @@
 {"level":"info","message":"Hello from Acquisitions!","service":"acquisitions-api","timestamp":"2025-10-06T07:50:01.590Z"}
 {"level":"info","message":"::1 - - [06/Oct/2025:07:50:01 +0000] \"GET / HTTP/1.1\" 200 24 \"-\" \"HTTPie\"","service":"acquisitions-api","timestamp":"2025-10-06T07:50:01.598Z"}
 {"level":"info","message":"::1 - - [06/Oct/2025:07:50:15 +0000] \"POST / HTTP/1.1\" 404 140 \"-\" \"HTTPie\"","service":"acquisitions-api","timestamp":"2025-10-06T07:50:15.603Z"}
+{"level":"info","message":"::1 - - [06/Oct/2025:08:14:45 +0000] \"GET /api/auth/sign-in HTTP/1.1\" - - \"-\" \"HTTPie\"","service":"acquisitions-api","timestamp":"2025-10-06T08:14:45.491Z"}
+{"level":"info","message":"::1 - - [06/Oct/2025:08:14:49 +0000] \"GET /health HTTP/1.1\" 200 74 \"-\" \"HTTPie\"","service":"acquisitions-api","timestamp":"2025-10-06T08:14:49.306Z"}
+{"level":"info","message":"::1 - - [06/Oct/2025:08:15:34 +0000] \"GET /health HTTP/1.1\" 200 75 \"-\" \"HTTPie\"","service":"acquisitions-api","timestamp":"2025-10-06T08:15:34.290Z"}
+{"level":"info","message":"::1 - - [06/Oct/2025:08:15:34 +0000] \"GET /health HTTP/1.1\" 200 74 \"-\" \"HTTPie\"","service":"acquisitions-api","timestamp":"2025-10-06T08:15:34.775Z"}
+{"level":"info","message":"::1 - - [06/Oct/2025:08:15:36 +0000] \"GET /health HTTP/1.1\" 200 75 \"-\" \"HTTPie\"","service":"acquisitions-api","timestamp":"2025-10-06T08:15:36.925Z"}
+{"level":"info","message":"::1 - - [06/Oct/2025:08:15:37 +0000] \"GET /health HTTP/1.1\" 200 75 \"-\" \"HTTPie\"","service":"acquisitions-api","timestamp":"2025-10-06T08:15:37.373Z"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded","path":"/health","service":"acquisitions-api","timestamp":"2025-10-06T08:15:38.507Z","userAgent":"HTTPie"}
+{"level":"info","message":"::1 - - [06/Oct/2025:08:15:38 +0000] \"GET /health HTTP/1.1\" 403 51 \"-\" \"HTTPie\"","service":"acquisitions-api","timestamp":"2025-10-06T08:15:38.513Z"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded","path":"/health","service":"acquisitions-api","timestamp":"2025-10-06T08:15:39.675Z","userAgent":"HTTPie"}
+{"level":"info","message":"::1 - - [06/Oct/2025:08:15:39 +0000] \"GET /health HTTP/1.1\" 403 51 \"-\" \"HTTPie\"","service":"acquisitions-api","timestamp":"2025-10-06T08:15:39.685Z"}
