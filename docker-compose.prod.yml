@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # Application service for production
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: acquisitions-app-prod
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.production
+    volumes:
+      # Mount logs directory for persistence
+      - ./logs:/app/logs
+      # Mount any configuration files if needed
+      - ./config:/app/config:ro
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    deploy:
+      # Production deployment configuration
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+  # Optional: Reverse proxy for production (Nginx)
+  nginx:
+    image: nginx:alpine
+    container_name: acquisitions-nginx-prod
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - app
+    networks:
+      - app-network
+    profiles:
+      - with-proxy
+    restart: unless-stopped
+
+  # Optional: Log aggregation service
+  fluentd:
+    image: fluentd:latest
+    container_name: acquisitions-fluentd-prod
+    volumes:
+      - ./fluentd/conf:/fluentd/etc
+      - ./logs:/var/log/app
+    networks:
+      - app-network
+    profiles:
+      - with-logging
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+    name: acquisitions-prod-network
